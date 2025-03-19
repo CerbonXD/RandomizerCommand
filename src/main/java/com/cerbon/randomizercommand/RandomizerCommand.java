@@ -19,7 +19,7 @@ public class RandomizerCommand implements ModInitializer {
     // Pattern for @range[min, max]
     private static final Pattern RANGE_PATTERN = Pattern.compile("@range\\[(\\d+)\\s*,\\s*(\\d+)\\]");
 
-    // Pattern for @random[option1, option2, ...]
+    // Pattern for @list[option1, option2, ...]
     private static final Pattern RANDOM_PATTERN = Pattern.compile("@list\\[(.*?)\\]");
 
     @Override
@@ -68,7 +68,7 @@ public class RandomizerCommand implements ModInitializer {
         rangeMatcher.appendTail(rangeBuilder);
         result = rangeBuilder.toString();
 
-        // Process all @random[option1, option2, ...] patterns
+        // Process all @list[option1, option2, ...] patterns
         Matcher randomMatcher = RANDOM_PATTERN.matcher(result);
         StringBuilder randomBuilder = new StringBuilder();
 
