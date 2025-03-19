@@ -20,7 +20,7 @@ public class RandomizerCommand implements ModInitializer {
     private static final Pattern RANGE_PATTERN = Pattern.compile("@range\\[(\\d+)\\s*,\\s*(\\d+)\\]");
 
     // Pattern for @random[option1, option2, ...]
-    private static final Pattern RANDOM_PATTERN = Pattern.compile("@random\\[(.*?)\\]");
+    private static final Pattern RANDOM_PATTERN = Pattern.compile("@list\\[(.*?)\\]");
 
     @Override
     public void onInitialize() {
