@@ -14,7 +14,8 @@
   "environment": "*",
   "entrypoints": {
     "client": ["com.cerbon.randomizercommand.client.RandomizerCommandClient"],
-    "main": ["com.cerbon.randomizercommand.RandomizerCommand"]
+    "main": ["com.cerbon.randomizercommand.RandomizerCommand"],
+    "modmenu": ["com.cerbon.randomizercommand.client.ModMenuIntegration"]
   },
 
   "mixins": [

@@ -1,15 +1,22 @@
 package com.cerbon.randomizercommand;
 
+import com.cerbon.randomizercommand.config.RDCConfig;
 import com.mojang.brigadier.arguments.StringArgumentType;
+import me.lucko.fabric.api.permissions.v0.Permissions;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.commands.Commands;
+import net.minecraft.network.chat.Component;
 
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RandomizerCommand implements ModInitializer {
+    public static final String MOD_ID = "randomizercommand";
+
     private static final Random random = new Random();
 
     // Pattern for @range[min, max]
@@ -20,9 +27,13 @@ public class RandomizerCommand implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        AutoConfig.register(RDCConfig.class, JanksonConfigSerializer::new);
+        AutoConfig.getConfigHolder(RDCConfig.class).save();
+        RDCConfig config = AutoConfig.getConfigHolder(RDCConfig.class).get();
+
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) ->
                 dispatcher.register(Commands.literal("randomizer")
-                        .requires(command -> command.hasPermission(2))
+                        .requires(command -> command.hasPermission(2) && config.permissions.stream().anyMatch(permission -> Permissions.check(command, permission.permission, false)))
                         .then(Commands.argument("command", StringArgumentType.greedyString())
                                 .executes(context -> {
                                     String command = StringArgumentType.getString(context, "command");
