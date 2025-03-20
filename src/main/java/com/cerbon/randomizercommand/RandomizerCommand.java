@@ -33,7 +33,7 @@ public class RandomizerCommand implements ModInitializer {
 
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) ->
                 dispatcher.register(Commands.literal("randomizer")
-                        .requires(command -> command.hasPermission(2) && config.permissions.stream().anyMatch(permission -> Permissions.check(command, permission.permission, false)))
+                        .requires(command -> config.permissions.stream().anyMatch(permission -> Permissions.check(command, permission.permission, false)))
                         .then(Commands.argument("command", StringArgumentType.greedyString())
                                 .executes(context -> {
                                     String command = StringArgumentType.getString(context, "command");
