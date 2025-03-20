@@ -1,6 +1,4 @@
 {
   "text.autoconfig.randomizercommand.option.permissions": "Permissions",
-  "text.autoconfig.randomizercommand.option.Permission": "Permission",
-  "text.autoconfig.randomizercommand.option.Permission.permission": "Permission",
-  "randomizercommand.no_permission": "You don't have permission to execute this command"
+  "text.autoconfig.randomizercommand.option.commandLevel": "Command Level"
 }
